@@ -58,8 +58,8 @@ jobs:
 
     - name: "Remove me: Conan templates and build selfcheck"
       env:
-        CC: clang-18
-        CXX: clang-18
+        CC: clang
+        CXX: clang++
       run: |
         set -x
         PROFILE="$(pwd)/.conan/profiles/${{ matrix.profile }}"
