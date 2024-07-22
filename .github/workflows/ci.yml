@@ -57,6 +57,9 @@ jobs:
         ninja --version
 
     - name: "Remove me: Conan templates and build selfcheck"
+      env:
+        CC: clang-18
+        CXX: clang-18
       run: |
         set -x
         PROFILE="$(pwd)/.conan/profiles/${{ matrix.profile }}"
