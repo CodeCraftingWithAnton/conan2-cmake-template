@@ -45,6 +45,10 @@ jobs:
       with:
         environment-file: environment.yml
         init-shell: bash
+    - name: Set compilers path
+      run: |
+        echo "CC='$(micromamba run which clang)'" >> "$GITHUB_ENV"
+        echo "CXX='$(micromamba run which clang++)'" >> "$GITHUB_ENV"
 
     - name: Install libcxx
       if: runner.os == 'Linux'
@@ -62,13 +66,12 @@ jobs:
         conan --version
         cmake --version
         ninja --version
+        $CC --version
+        $CXX --version
 
         env | sort
 
     - name: "Remove me: Conan templates and build selfcheck"
-      env:
-        CC: clang
-        CXX: clang++
       run: |
         set -x
         PROFILE="$(pwd)/.conan/profiles/${{ matrix.profile }}"
