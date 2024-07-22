@@ -14,7 +14,8 @@ This is a template repository for C++ projects that use [Conan 2 package manager
 ## How to use this template
 
  1. Create a new repo from this template repository. [Detailed docs on how to do that](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
- 2. 
+ 2. Modify versions of python, cmake, ninja, clang in [`environment.yml`](environment.yml)
+ 3. Pick the `<name>` and `<version>` and run `conan new cmake_lib -d name=<name> -d version=<version>` to initialize the repo
 
 ## Why does this template exist?
 
