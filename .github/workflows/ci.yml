@@ -49,6 +49,7 @@ jobs:
     - name: "Remove me: Template versions"
       run: |
         set -e
+        set -x
 
         python --version
         conan --version
@@ -62,12 +63,12 @@ jobs:
 
         mkdir foo_exe foo_lib
         pushd foo_exe
-        conan new cmake_exe -d name=foo_exe -d version=0.1.0 -pr="${PROFILE}"
+        conan new cmake_exe -d name=foo_exe -d version=0.1.0
         conan create . -pr="${PROFILE}" -s build_type="${{ matrix.build_type }}"
         popd
 
         pushd foo_lib
-        conan new cmake_lib -d name=foo_lib -d version=0.1.0 -pr="${PROFILE}"
+        conan new cmake_lib -d name=foo_lib -d version=0.1.0
         conan create . -pr="${PROFILE}" -s build_type="${{ matrix.build_type }}"
 
     # TODO: Migrate to conan steps
