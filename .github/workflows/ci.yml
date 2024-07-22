@@ -63,6 +63,8 @@ jobs:
         cmake --version
         ninja --version
 
+        env | sort
+
     - name: "Remove me: Conan templates and build selfcheck"
       env:
         CC: clang
