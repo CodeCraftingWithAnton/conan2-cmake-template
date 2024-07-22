@@ -21,19 +21,14 @@ jobs:
       #
       # To add more build types (Release, Debug, RelWithDebInfo, etc.) customize the build_type list.
       matrix:
+        os: [windows-latest, ubuntu-latest, macos-latest]
         build_type: [Release]
         include:
           - os: windows-latest
-            c_compiler: clang
-            cpp_compiler: clang++
             profile: clang-windows
           - os: ubuntu-latest
-            c_compiler: clang
-            cpp_compiler: clang++
             profile: clang-linux
           - os: macos-latest
-            c_compiler: clang
-            cpp_compiler: clang++
             profile: clang-macos-arm
 
     steps:
@@ -42,11 +37,20 @@ jobs:
     - uses: mamba-org/setup-micromamba@v1
       with:
         environment-file: environment.yml
+        init-shell: bash
 
-    - name: "Remove me: Template selfcheck"
+    - name: "Remove me: Template versions"
       shell: bash
       run: |
-        conan --help
+        set +e
+        python --version
+        conan --version
+        cmake --version
+        ninja --version
+
+    - name: "Remove me: Conan templates and build selfcheck"
+      shell: bash
+      run: |
         ROOT=$(pwd)
 
         mkdir foo_exe foo_lib
