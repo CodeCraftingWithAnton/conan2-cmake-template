@@ -50,6 +50,8 @@ jobs:
       shell: bash
       run: |
         set +e
+        micromamba activate default
+
         python --version
         conan --version
         cmake --version
@@ -59,6 +61,7 @@ jobs:
       shell: bash
       run: |
         ROOT=$(pwd)
+        micromamba activate default
 
         mkdir foo_exe foo_lib
         pushd foo_exe
