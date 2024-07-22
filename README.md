@@ -13,6 +13,9 @@ This is a template repository for C++ projects that use [Conan 2 package manager
 
 ## How to use this template
 
+ 1. Create a new repo from this template repository. [Detailed docs on how to do that](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
+ 2. 
+
 ## Why does this template exist?
 
 Modern hardware is becoming more and more powerful, allowing building the most audacious software projects. However with great power comes great ~~responsibility~~ complexity. Modern software projects consist of hundreds and sometimes even thousands of cross interacting modules. Managing all of them as a single monolithic chunk of code is generally undesirable and in the world of open source software is simply impossible.
@@ -24,8 +27,7 @@ In the best traditions of the C++ development, there is no standard set of tools
 
 [Micromamba][micromamba] is lightweight and blazing fast version of [conda](https://anaconda.org/) which was originally designed to manage python environment and packages along with their native dependencies. However it proved to be well suited for handling native tools independently of python. Therefore it is used to install [Python][conda-python] for Conan along with [CMake][conda-cmake], [Ninja][conda-ninja] and [Clang][conda-clang]. In order to achieve reproducible results, environment uses [conda-forge][conda-forge] remote only.
 
-"Wait, Conda is a package manager of its own, why do we need Conan" you might ask and will be absolutely correct. Conda is a package manager, but it is focused on python and many C++ packages exist there only by chance, because they were needed for some python native dependency. [conda-forge][conda-forge] has more C++ packages, but it comes with a twist, you have to build, test and distribute using their infrastructure and compilers, which is not what most C++ projects want or need. Hence conda is not really well suited for generic C++ package management and [Conan 2][conan] is still the right solution.
-
+"Wait, Conda is a package manager of its own, why do we need Conan" you might ask and will be absolutely correct. Conda is a package manager, but it is focused on python and many C++ packages exist there only by chance, because they were needed for some python native dependency. [conda-forge][conda-forge] has more C++ packages, but it comes with a twist, you have to build, test and distribute using their infrastructure and compilers, which is not what most C++ projects want or need. Hence conda is not really well suited for generic C++ package management and [Conan 2][conan] is still the right solution. On top of that conda environment provides no isolation between packages, meaning any package can access headers, libs and binaries from any other, no matter if it was an explicit or implicit dependency. [Conan 2][conan] has strict dependency model and provides clean isolation of dependencies, even allowing having multiple versions of the same library as long as they don't conflict at runtime.
 
 ## What's inside
 
