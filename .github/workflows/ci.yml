@@ -47,8 +47,8 @@ jobs:
         init-shell: bash
     - name: Set compilers path
       run: |
-        echo "CC='$(micromamba run which clang)'" >> "$GITHUB_ENV"
-        echo "CXX='$(micromamba run which clang++)'" >> "$GITHUB_ENV"
+        echo "CC=$(micromamba run which clang)" >> "$GITHUB_ENV"
+        echo "CXX=$(micromamba run which clang++)" >> "$GITHUB_ENV"
 
     # - name: Install libcxx
     #   if: runner.os == 'Linux'
