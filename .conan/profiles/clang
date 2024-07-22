@@ -3,7 +3,7 @@ build_type=Release
 compiler=clang
 compiler.cppstd=14
 compiler.libcxx=libc++
-compiler.version=18
+compiler.version=14
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja

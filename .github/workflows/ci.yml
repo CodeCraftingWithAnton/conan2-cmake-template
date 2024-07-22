@@ -50,7 +50,8 @@ jobs:
       if: runner.os == 'Linux'
       run: |
         sudo apt-get update
-        sudo apt-get install -y libc++-18-dev libc++abi-18-dev
+        # The version of libc++ and libc++abi should match the version of clang in the environment.yml file
+        sudo apt-get install -y libc++-14-dev libc++abi-14-dev
 
     - name: "Remove me: Template versions"
       run: |
@@ -64,8 +65,8 @@ jobs:
 
     - name: "Remove me: Conan templates and build selfcheck"
       env:
-        CC: micromamba run clang
-        CXX: micromamba run clang++
+        CC: clang
+        CXX: clang++
       run: |
         set -x
         PROFILE="$(pwd)/.conan/profiles/${{ matrix.profile }}"
