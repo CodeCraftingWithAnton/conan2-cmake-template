@@ -17,7 +17,7 @@ dependencies:
   - ninja=1.12
 
   - libcxx
-  # - libcxxabi
+  - libcxxabi # This will work only for Linux
 
   - python=3.12
   - pip:
