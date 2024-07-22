@@ -50,12 +50,12 @@ jobs:
         echo "CC='$(micromamba run which clang)'" >> "$GITHUB_ENV"
         echo "CXX='$(micromamba run which clang++)'" >> "$GITHUB_ENV"
 
-    - name: Install libcxx
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get update
-        # The version of libc++ and libc++abi should match the version of clang in the environment.yml file
-        sudo apt-get install -y libc++-14-dev libc++abi-14-dev
+    # - name: Install libcxx
+    #   if: runner.os == 'Linux'
+    #   run: |
+    #     sudo apt-get update
+    #     # The version of libc++ and libc++abi should match the version of clang in the environment.yml file
+    #     sudo apt-get install -y libc++-14-dev libc++abi-14-dev
 
     - name: "Remove me: Template versions"
       run: |
