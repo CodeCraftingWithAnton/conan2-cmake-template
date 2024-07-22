@@ -6,6 +6,13 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
+defaults:
+  run:
+    # This forces shell to be login shell and load the user's profile that activates the conda environment
+    # https://github.com/marketplace/actions/setup-micromamba#about-login-shells
+    shell: bash -leo pipefail {0}
+
 jobs:
   build:
     runs-on: ${{ matrix.os }}
