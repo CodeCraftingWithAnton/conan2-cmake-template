@@ -16,6 +16,9 @@ dependencies:
   - cmake=3.30
   - ninja=1.12
 
+  - libcxx
+  # - libcxxabi
+
   - python=3.12
   - pip:
       - conan>=2.5
