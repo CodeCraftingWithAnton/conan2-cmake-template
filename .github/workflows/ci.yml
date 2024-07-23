@@ -32,13 +32,10 @@ jobs:
         build_type: [Release]
         include:
           - os: windows-latest
-            profile: clang
           - os: ubuntu-latest
-            profile: clang
           - os: macos-latest
-            profile: clang
     env:
-      CONAN_PROFILE: "${{ github.workspace }}/.conan/profiles/${{ matrix.profile }}"
+      CONAN_PROFILE: "${{ github.workspace }}/.conan/profiles/clang"
     steps:
     - uses: actions/checkout@v4
 
@@ -76,30 +73,3 @@ jobs:
         pushd foo_lib
         conan new cmake_lib -d name=foo_lib -d version=0.1.0
         conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
-
-    # TODO: Migrate to conan steps
-    # - name: Set reusable strings
-    #   # Turn repeated input strings (such as the build output directory) into step outputs. These step outputs can be used throughout the workflow file.
-    #   id: strings
-    #   run: |
-    #     echo "build-output-dir=${{ github.workspace }}/build" >> "$GITHUB_OUTPUT"
-
-    # - name: Configure CMake
-    #   # Configure CMake in a 'build' subdirectory. `CMAKE_BUILD_TYPE` is only required if you are using a single-configuration generator such as make.
-    #   # See https://cmake.org/cmake/help/latest/variable/CMAKE_BUILD_TYPE.html?highlight=cmake_build_type
-    #   run: >
-    #     cmake -B ${{ steps.strings.outputs.build-output-dir }}
-    #     -DCMAKE_CXX_COMPILER=${{ matrix.cpp_compiler }}
-    #     -DCMAKE_C_COMPILER=${{ matrix.c_compiler }}
-    #     -DCMAKE_BUILD_TYPE="${{ matrix.build_type }}"
-    #     -S ${{ github.workspace }}
-
-    # - name: Build
-    #   # Build your program with the given configuration. Note that --config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-    #   run: cmake --build ${{ steps.strings.outputs.build-output-dir }} --config "${{ matrix.build_type }}"
-
-    # - name: Test
-    #   working-directory: ${{ steps.strings.outputs.build-output-dir }}
-    #   # Execute tests defined by the CMake configuration. Note that --build-config is needed because the default Windows generator is a multi-config generator (Visual Studio generator).
-    #   # See https://cmake.org/cmake/help/latest/manual/ctest.1.html for more detail
-    #   run: ctest --build-config "${{ matrix.build_type }}"
