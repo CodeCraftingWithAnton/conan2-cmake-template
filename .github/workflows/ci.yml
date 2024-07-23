@@ -32,11 +32,11 @@ jobs:
         build_type: [Release]
         include:
           - os: windows-latest
-            profile: clang-windows
+            profile: clang
           - os: ubuntu-latest
-            profile: clang-linux
+            profile: clang
           - os: macos-latest
-            profile: clang-macos-arm
+            profile: clang
     env:
       CONAN_PROFILE: "${{ github.workspace }}/.conan/profiles/${{ matrix.profile }}"
     steps:

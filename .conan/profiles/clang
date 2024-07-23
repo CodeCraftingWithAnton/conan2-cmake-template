@@ -1,9 +1,15 @@
+{% set os_name = {"Darwin": "Macos"}.get(platform.system(), platform.system()) %}
+{% set arch = {"arm64": "armv8", "aarch64": "armv8"}.get(platform.uname().machine, platform.uname().machine) %}
+{% set std_lib = {"Linux": "libstdc++"}.get(platform.system(), "libc++") %}
+
 [settings]
 build_type=Release
 compiler=clang
 compiler.cppstd=14
-compiler.libcxx=libc++
+compiler.libcxx={{ std_lib }}
 compiler.version=18
+os={{ os_name }}
+arch={{ arch }}
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
