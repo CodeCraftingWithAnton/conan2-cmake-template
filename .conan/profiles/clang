@@ -7,3 +7,8 @@ compiler.version=18
 
 [conf]
 tools.cmake.cmaketoolchain:generator=Ninja
+
+[buildenv]
+# Force compiler paths to be from micromamba
+CC="$(micromamba run which clang)"
+CXX="$(micromamba run which clang++)"
