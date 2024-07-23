@@ -1,5 +1,5 @@
 {% set os_name = {"Darwin": "Macos"}.get(platform.system(), platform.system()) %}
-{% set arch = {"arm64": "armv8", "aarch64": "armv8"}.get(platform.uname().machine, platform.uname().machine) %}
+{% set arch = {"arm64": "armv8", "aarch64": "armv8", "amd64": "x86_64"}.get(platform.uname().machine.lower(), platform.uname().machine) %}
 {% set std_lib = {"Linux": "libstdc++"}.get(platform.system(), "libc++") %}
 
 [settings]
