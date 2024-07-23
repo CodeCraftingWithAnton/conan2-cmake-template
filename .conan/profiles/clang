@@ -14,5 +14,6 @@ tools.cmake.cmaketoolchain:generator=Ninja
 
 [buildenv]
 # Force compiler paths to be from micromamba
-CC="$(micromamba run which clang)"
-CXX="$(micromamba run which clang++)"
+# Use just name on Windows, since bash expansion is not available
+CC={{ "clang" if platform.system() == "Windows" else "$(micromamba run which clang)" }}
+CXX={{ "clang++" if platform.system() == "Windows" else "$(micromamba run which clang++)" }}
