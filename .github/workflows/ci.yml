@@ -44,7 +44,17 @@ jobs:
         environment-file: environment.yml
         init-shell: bash
 
-    - name: "REMOVE ME: Template versions"
+    - name: Was template initialized?
+      id: conanfile_exists
+      run: |
+        if [[ -f conanfile.py || -f conanfile.txt ]]; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: "REMOVE ME: Conan templates and build selfcheck"
+      if: ${{ steps.conanfile_exists.outputs.exists == 'false' }}
       run: |
         set -e
         set -x
@@ -56,20 +66,19 @@ jobs:
 
         env | sort
 
-    - name: "REMOVE ME: Conan templates and build selfcheck"
-      run: |
-        if [[ -f conanfile.py ]]; then
-          conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
-        fi
-
-        set -x
-
         mkdir foo_exe foo_lib
         pushd foo_exe
-        conan new cmake_exe -d name=foo_exe -d version=0.1.0
-        conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
+          conan new cmake_exe -d name=foo_exe -d version=0.1.0
+          conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
         popd
 
         pushd foo_lib
-        conan new cmake_lib -d name=foo_lib -d version=0.1.0
+          conan new cmake_lib -d name=foo_lib -d version=0.1.0
+          conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
+        popd
+
+    - name: "Build and test"
+      # This if check can be removed once the template is initialized
+      if: ${{ steps.conanfile_exists.outputs.exists == 'true' }} 
+      run: |
         conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
