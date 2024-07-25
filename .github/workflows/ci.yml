@@ -15,8 +15,6 @@ defaults:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-
     strategy:
       #TODO: Set fail-fast to false to ensure that feedback is delivered for all matrix combinations. Consider changing this to true when your workflow is stable.
       fail-fast: false
@@ -30,10 +28,8 @@ jobs:
       matrix:
         os: [windows-latest, ubuntu-latest, macos-latest]
         build_type: [Release]
-        include:
-          - os: windows-latest
-          - os: ubuntu-latest
-          - os: macos-latest
+
+    runs-on: ${{ matrix.os }}
     env:
       CONAN_PROFILE: "${{ github.workspace }}/.conan/profiles/clang"
     steps:
@@ -44,6 +40,7 @@ jobs:
         environment-file: environment.yml
         init-shell: bash
 
+    # >>>>>>>> REMOVE ME
     - name: Was template initialized?
       id: conanfile_exists
       run: |
@@ -76,9 +73,12 @@ jobs:
           conan new cmake_lib -d name=foo_lib -d version=0.1.0
           conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
         popd
+    # <<<<<<< REMOVE ME
 
     - name: "Build and test"
+      # >>>>>>>> REMOVE ME
       # This if check can be removed once the template is initialized
       if: ${{ steps.conanfile_exists.outputs.exists == 'true' }} 
+      # <<<<<<< REMOVE ME
       run: |
         conan create . --profile:all="${CONAN_PROFILE}" -s build_type="${{ matrix.build_type }}"
