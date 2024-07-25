@@ -23,7 +23,8 @@ This is a template repository for C++ projects that use [Conan 2 package manager
  7. Use `conan new` to create new library (`cmake_lib`) or executable (`cmake_exe`) from template. Pick the `<name>` and `<version>` and run `conan new cmake_lib -d name=<name> -d version=<version>`. For more details see [official `conan new` doc](https://docs.conan.io/2/reference/commands/new.html)
  8. Update all the template fields the files created by `conan`
  9. Remove all the `Remove me:` steps from `.github/workflows/ci.yml`
- 10. Happy coding!
+ 10. Learn more about [conan](https://docs.conan.io/2/tutorial/consuming_packages/build_simple_cmake_project.html)
+ 11. Happy coding!
 
 ## Why does this template exist?
 
