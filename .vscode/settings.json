@@ -1,0 +1,7 @@
+{
+  "private-extension-manager.directories": [
+    // list of directories where your private VSIX files are released
+    ".vscode/extensions"
+  ],
+  "private-extension-manager.autoUpdate": true, // automatically install newer version of your extensions
+}

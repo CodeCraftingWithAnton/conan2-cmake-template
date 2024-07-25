@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "aaron-bond.better-comments",
+    "ms-vscode.cpptools-extension-pack",
+    "jeff-hykin.better-cpp-syntax",
+    "llvm-vs-code-extensions.vscode-clangd",
+    "juliencroain.private-extension-manager",
+    // "corker.vscode-micromamba" // Enable once is merged https://github.com/mamba-org/vscode-micromamba/pull/51, use local version for now
+  ]
+}

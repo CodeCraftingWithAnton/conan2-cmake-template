@@ -1,3 +1,6 @@
+# Many folks .vscode folder ignored on global level
+!.vscode/**
+
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
