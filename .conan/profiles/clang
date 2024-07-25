@@ -13,7 +13,7 @@ arch={{detect_api.detect_arch()}}
 tools.cmake.cmaketoolchain:generator=Ninja
 
 [buildenv]
-# Force compiler paths to be from micromamba
-# Use just name on Windows, since bash expansion is not available
-CC={{ "clang" if platform.system() == "Windows" else "$(micromamba run which clang)" }}
-CXX={{ "clang++" if platform.system() == "Windows" else "$(micromamba run which clang++)" }}
+# Force clang as C and CXX compilers
+# This is required to suppress compiler deduction by cmake which might end up with system wide one
+CC=clang
+CXX=clang++
