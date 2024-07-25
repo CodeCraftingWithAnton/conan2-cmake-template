@@ -14,10 +14,16 @@ This is a template repository for C++ projects that use [Conan 2 package manager
 ## How to use this template
 
  1. Create a new repo from this template repository. [Detailed docs on how to do that](https://docs.github.com/en/repositories/creating-and-managing-repositories/creating-a-repository-from-a-template)
- 2. Modify versions of python, cmake, ninja, clang in [`environment.yml`](environment.yml)
- 3. Use `conan new` to create new library (`cmake_lib`) or executable (`cmake_exe`) from template. Pick the `<name>` and `<version>` and run `conan new cmake_lib -d name=<name> -d version=<version>`. For more details see [official `conan new` doc](https://docs.conan.io/2/reference/commands/new.html)
- 4. Update all the template
- 5. Remove all the `Remove me:` steps from `.github/workflows/ci.yml`
+ 2. Clone new repo locally and open folder in VSCode
+ 3. Instal all recommended extensions
+    1. Install local extensions via `Show Private Extensions` command (if any in `.vscode/extensions`)
+ 4. Modify versions of python, cmake, ninja, clang in [`environment.yml`](environment.yml)
+ 5. Initialize environment using `Micromamba: create environment`. This will install python, clang, conan and all other tools
+ 6. Reload VSCode to activate environment. This will make `conan` available in the terminal
+ 7. Use `conan new` to create new library (`cmake_lib`) or executable (`cmake_exe`) from template. Pick the `<name>` and `<version>` and run `conan new cmake_lib -d name=<name> -d version=<version>`. For more details see [official `conan new` doc](https://docs.conan.io/2/reference/commands/new.html)
+ 8. Update all the template fields the files created by `conan`
+ 9. Remove all the `Remove me:` steps from `.github/workflows/ci.yml`
+ 10. Happy coding!
 
 ## Why does this template exist?
 
